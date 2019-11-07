@@ -217,7 +217,7 @@ function WhatDoesThisProgramDo(lst) {
 // console.log(display(WhatDoesThisProgramDo(main())));
 function reverse(list){
   let curr = list.head;
-  let next = null;
+  let tmp = null;
   let prev = null;
 
 
@@ -227,15 +227,15 @@ function reverse(list){
   // }
   while(curr !== null){
     // save next before we overwrite curr.next!
-    next = curr.next;
+    tmp = curr.next;
     
     // reverse pointer
     curr.next = prev;
     // step forward in the list
     prev = curr;
-    curr = next;
+    curr = tmp;
     console.log('prev:',prev);
-    console.log('curr:',curr);
+    console.log('curr:',tmp);
   }
   list.head = prev;
   return list;
