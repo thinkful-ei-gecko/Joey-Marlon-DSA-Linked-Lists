@@ -1,4 +1,4 @@
-
+'use strict';
 
 class _Node {
   constructor(value, next) {
@@ -124,6 +124,8 @@ function main() {
   SLL.insertLast('Boomer');
   SLL.insertLast('Helo');
   SLL.insertLast('Husker');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Husker');
   SLL.insertLast('Starbuck');
 
   SLL.insertLast('Tauhida');
@@ -131,9 +133,85 @@ function main() {
   // SLL.insertAfter('Helo','Hotdog');
   // SLL.insertAt(2,'Kat');
   SLL.remove('Tauhida');
-  console.log(SLL.find('Tauhida'));
+  // console.log(SLL.find('Tauhida'));
   return SLL;
   
 }
 
-console.log(main());
+function display(linkedList) {
+  let currNode = linkedList.head;
+  while(currNode !== null){
+    console.log(currNode);
+    currNode = currNode.next;
+  }
+}
+
+function getSize(linkedList){
+  let currNode = linkedList.head;
+  let counter = 0;
+  while(currNode !== null){
+    currNode = currNode.next;
+    counter++;
+  }
+
+  return counter;
+}
+
+function isEmpty(linkedList){
+  if(linkedList.head === null){
+    console.log('Linked list is empty');
+    return;
+  }
+  console.log('Linked list is not empty');
+}
+
+function findPrevious(linkedList, value){
+  let node = linkedList.find(value);
+  let currentNode = linkedList.head;
+
+  if(node === currentNode){
+    console.log('Value is the first item of the linked list');
+    return;
+  }
+  while(currentNode.next !== node){
+    currentNode = currentNode.next;
+  }
+
+  return currentNode;
+}
+
+function findLast(linkedList){
+  let currentNode = linkedList.head;
+
+  while(currentNode.next !== null){
+    currentNode = currentNode.next;
+  }
+
+  return currentNode;
+}
+
+//Question #4
+function WhatDoesThisProgramDo(lst) {
+  //assigns starting point to iterate through linked list
+  let current = lst.head;
+
+  while (current !== null) {
+    //defines a newNode variable for a nested loop
+    let newNode = current;
+    while (newNode.next !== null) {
+      if (newNode.next.value === current.value) {
+        newNode.next = newNode.next.next;
+      }
+      else {
+        newNode = newNode.next;
+      }
+    }
+    //iterates to the next item
+    current = current.next;
+  }
+  return lst;
+}
+//The program removes duplicates from the linked list.
+//This would have O(n^2) complexity because the nested loop causes the function to iterate through the list again for each value.
+
+console.log(display(WhatDoesThisProgramDo(main())));
