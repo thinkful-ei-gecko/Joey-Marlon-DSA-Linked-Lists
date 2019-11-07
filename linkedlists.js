@@ -1,4 +1,4 @@
-'use strict';
+
 
 class _Node {
   constructor(value, next) {
@@ -87,7 +87,33 @@ class LinkedList {
     }
     currNode.next = new _Node(newValue, beforeNode);
   }
+  insertAfter(value, newValue){
+    if(this.find(value) === null){
+      console.log('Item not found');
+      return;
+    }
+    let currNode = this.head;
+    let afterNode = this.find(value);
 
+    while(currNode !== afterNode){
+      currNode = currNode.next;
+    }
+    currNode.next = new _Node(newValue, afterNode.next);
+  }
+  insertAt(num, newValue){
+    let currNode = this.head;
+    if(num === 1){
+      this.head = new _Node(newValue, this.head);
+      return;
+    }  
+    if(num >= 2){
+      for(let i = 2; i < num; i++){
+        currNode = currNode.next;
+      }
+    }
+    currNode.next = new _Node(newValue, currNode.next);
+  
+  }
   
 }
 
@@ -101,9 +127,11 @@ function main() {
   SLL.insertLast('Starbuck');
 
   SLL.insertLast('Tauhida');
-  SLL.insertBefore('Boomer', 'Athena');
-
-  console.log(SLL.find('Athena'));
+  // SLL.insertBefore('Boomer', 'Athena');
+  // SLL.insertAfter('Helo','Hotdog');
+  // SLL.insertAt(2,'Kat');
+  SLL.remove('Tauhida');
+  console.log(SLL.find('Tauhida'));
   return SLL;
   
 }
