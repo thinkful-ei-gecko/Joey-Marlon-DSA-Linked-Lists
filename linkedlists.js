@@ -124,8 +124,6 @@ function main() {
   SLL.insertLast('Boomer');
   SLL.insertLast('Helo');
   SLL.insertLast('Husker');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Husker');
   SLL.insertLast('Starbuck');
 
   SLL.insertLast('Tauhida');
@@ -240,4 +238,14 @@ function reverse(list){
   list.head = prev;
   return list;
 }
-console.log(reverse(main()));
+// console.log(reverse(main()));
+
+function thirdFromTheEnd(list){
+  let current = list.head; 
+  while(current.next.next.next !== null){
+    current = current.next;
+  }
+  return current;
+
+}
+console.log(thirdFromTheEnd(main()));
