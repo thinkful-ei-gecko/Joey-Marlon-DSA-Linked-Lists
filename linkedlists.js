@@ -1,4 +1,4 @@
-'use strict';
+
 
 class _Node {
   constructor(value, next) {
@@ -214,4 +214,30 @@ function WhatDoesThisProgramDo(lst) {
 //The program removes duplicates from the linked list.
 //This would have O(n^2) complexity because the nested loop causes the function to iterate through the list again for each value.
 
-console.log(display(WhatDoesThisProgramDo(main())));
+// console.log(display(WhatDoesThisProgramDo(main())));
+function reverse(list){
+  let curr = list.head;
+  let next = null;
+  let prev = null;
+
+
+  // while(curr !== null){
+  //   curr = curr.next
+
+  // }
+  while(curr !== null){
+    // save next before we overwrite curr.next!
+    next = curr.next;
+    
+    // reverse pointer
+    curr.next = prev;
+    // step forward in the list
+    prev = curr;
+    curr = next;
+    console.log('prev:',prev);
+    console.log('curr:',curr);
+  }
+  list.head = prev;
+  return list;
+}
+console.log(reverse(main()));
