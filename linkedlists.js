@@ -1,4 +1,4 @@
-
+'use strict';
 
 class _Node {
   constructor(value, next) {
@@ -130,7 +130,7 @@ function main() {
   // SLL.insertBefore('Boomer', 'Athena');
   // SLL.insertAfter('Helo','Hotdog');
   // SLL.insertAt(2,'Kat');
-  SLL.remove('Tauhida');
+  // SLL.remove('Tauhida');
   // console.log(SLL.find('Tauhida'));
   return SLL;
   
@@ -248,4 +248,52 @@ function thirdFromTheEnd(list){
   return current;
 
 }
-console.log(thirdFromTheEnd(main()));
+// console.log(thirdFromTheEnd(main()));
+
+function middleOfList(list){
+  let middle = Math.ceil(getSize(list)/2);
+  let curr = list.head;
+  for(let i = 1; i < middle; i++){
+    curr = curr.next;
+  }
+
+  return curr;
+}
+
+// console.log(middleOfList(main()));
+
+function createCycle(){
+  let cycleList = new LinkedList;
+
+  cycleList.insertFirst('A');
+  cycleList.insertLast('B');
+  cycleList.insertLast('C');
+  
+  let curr = cycleList.head;
+  while(curr.next !== null){
+    curr = curr.next;
+  }
+  curr.next = new _Node('D', curr);
+  return cycleList;
+}
+
+function isCycle(list){
+  let tortoise = list.head;
+  let hare = list.head;
+
+  while(hare && hare.next){
+    tortoise = tortoise.next;
+    hare = hare.next.next;
+    if(tortoise === hare){
+      return 'The list is a cycle';
+    }
+  }
+
+  return 'The list is not a cycle';
+}
+
+// console.log(isCycle(createCycle()));
+// console.log(isCycle(main()));
+
+
+
